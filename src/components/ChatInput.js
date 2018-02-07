@@ -21,7 +21,7 @@ class ChatInput extends React.Component {
     let now = moment();
     let timeNow = now._d.toString();
     const getTime = dateTime => {
-      return moment(dateTime).format("HH:mm a"); // 10:30 am
+      return moment(dateTime).format("hh:mm a");
     };
 
     let timeStamp = getTime(timeNow);
