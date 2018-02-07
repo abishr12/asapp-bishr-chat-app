@@ -32,12 +32,16 @@ class ChatApp extends React.Component {
     const objDiv = document.getElementById("messageList");
     objDiv.scrollTop = objDiv.scrollHeight;
   }
-  sendHandler(message) {
+  sendHandler(message, timeStamp) {
+    // Grab the time
+    // console.log(message);
+    // console.log(timeStamp);
     const messageObject = {
       username: this.props.username,
-      message
+      message,
+      timeStamp
     };
-
+    // console.log(messageObject);
     // Emit the message to the server
     this.socket.emit("client:message", messageObject);
 
@@ -54,7 +58,7 @@ class ChatApp extends React.Component {
   render() {
     return (
       <div className="container">
-        <h3>React Chat App</h3>
+        <h3>Asapp Chat App</h3>
         <Messages messages={this.state.messages} />
         <ChatInput onSend={this.sendHandler} />
       </div>

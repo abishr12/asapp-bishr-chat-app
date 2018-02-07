@@ -1,10 +1,12 @@
 import React from "react";
-import moment from "moment";
 
 // This component displays an individual message.
 // We should have logic to display it on the right if the user sent the
 // message, or on the left if it was received from someone else.
 class Message extends React.Component {
+  renderTimeStamp() {
+    return <div className="time-stamp">{this.props.timeStamp}</div>;
+  }
   render() {
     // Display the message text and sender's name
 
@@ -17,7 +19,8 @@ class Message extends React.Component {
         <div className="username">{this.props.username}</div>
         <div className="message-body">{this.props.message}</div>
         <br />
-        <div className="time">{this.props.timeStamp}</div>
+        {}
+        {!this.props.fromMe ? this.renderTimeStamp() : ""}
       </div>
     );
   }
