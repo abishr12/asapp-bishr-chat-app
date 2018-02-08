@@ -18,7 +18,7 @@ class App extends React.Component {
   }
   usernameSubmitHandler(event) {
     event.preventDefault();
-    this.setState({ submitted: true, username: this.state.username });
+    this.setState({ submitted: true, username: this.state.username.trim() });
   }
   render() {
     if (this.state.submitted) {
@@ -30,7 +30,7 @@ class App extends React.Component {
         onSubmit={this.usernameSubmitHandler}
         className="username-container"
       >
-        <h1>React Instant Chat</h1>
+        <h1>ASAPP Chat</h1>
         <div>
           <input
             type="text"

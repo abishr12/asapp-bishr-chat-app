@@ -16,9 +16,10 @@ class ChatApp extends React.Component {
   constructor(props) {
     super(props);
     // set the initial state of messages so that it is not undefined on load
-    this.state = { messages: [], typing: false };
+    this.state = { messages: [], another_typing: null };
     // Connect to the server
     this.socket = io(config.api).connect();
+
     this.sendHandler = this.sendHandler.bind(this);
     this.keyHandler = this.keyHandler.bind(this);
 
@@ -29,7 +30,8 @@ class ChatApp extends React.Component {
 
     //Listen for typing from the server
     this.socket.on("server:typing", message => {
-      console.log("Server is receiving " + message);
+      this.setState({ another_typing: true });
+      this.userTyping(message);
     });
   }
 
@@ -38,9 +40,17 @@ class ChatApp extends React.Component {
     const objDiv = document.getElementById("messageList");
     objDiv.scrollTop = objDiv.scrollHeight;
   }
-  keyHandler(message) {
-    console.log(this);
-    this.socket.emit("client:typing", message);
+  keyHandler() {
+    //Denotes name of user that is typing
+    let userTyping = `${this.props.username}`;
+    console.log(userTyping);
+    const messageObject = { message: userTyping };
+    this.socket.emit("client:typing", messageObject);
+  }
+  userTyping(message) {
+    console.log(message + " is typing...");
+    let typing_indicator = `${message} is typing`;
+    return <p>{typing_indicator}</p>;
   }
   sendHandler(message, timeStamp) {
     // Grab the time
@@ -51,7 +61,7 @@ class ChatApp extends React.Component {
       message,
       timeStamp
     };
-    //console.log(this.socket);
+    // console.log(this);
     // Emit the message to the server
     this.socket.emit("client:message", messageObject);
 
@@ -60,12 +70,9 @@ class ChatApp extends React.Component {
     this.addMessage(messageObject);
   }
 
-  isTyping() {
-    //Message to display typing
-    console.log("Another User Is Typing");
-  }
   addMessage(message) {
     // Append the message to the component state
+
     const messages = this.state.messages;
     messages.push(message);
     this.setState({ messages });
@@ -73,8 +80,9 @@ class ChatApp extends React.Component {
   render() {
     return (
       <div className="container">
-        <h3>Asapp Chat App</h3>
+        <h3>{this.props.username} Chat</h3>
         <Messages messages={this.state.messages} />
+
         <ChatInput onSend={this.sendHandler} onKeyUp={this.keyHandler} />
       </div>
     );
