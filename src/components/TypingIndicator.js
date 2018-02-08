@@ -2,12 +2,12 @@ require("../styles/TypingIndicator.css");
 
 import React from "react";
 
-const TypingIndicator = props => {
-  <div class="typing-indicator">
+const TypingIndicator = props => (
+  <div className="typing-indicator">
     <span />
     <span />
     <span />
-  </div>;
-};
+  </div>
+);
 
 export default TypingIndicator;

@@ -6,6 +6,7 @@ import config from "../config";
 import { Grid, Row, Col } from "react-bootstrap";
 import Messages from "./Messages";
 import ChatInput from "./ChatInput";
+import TypingIndicator from "./TypingIndicator";
 import moment from "moment";
 
 // This is where the main logic of the app will be. Here is where we will
@@ -32,9 +33,7 @@ class ChatApp extends React.Component {
 
     //Listen for typing from the server
     this.socket.on("server:typing", message => {
-      this.userTyping(message, function() {
-        console.log("In Callback");
-      });
+      this.userTyping(message);
     });
   }
 
@@ -42,12 +41,14 @@ class ChatApp extends React.Component {
     // get the messagelist container and set the scrollTop to the height of the container
     const objDiv = document.getElementById("messageList");
     objDiv.scrollTop = objDiv.scrollHeight;
+
+    //Reset rendering to disappear when the user completes typing
     if (this.state.anotherTyping) {
       setTimeout(() => {
         this.setState({
           anotherTyping: false
         });
-      }, 1000);
+      }, 2000);
     }
   }
   keyHandler() {
@@ -57,13 +58,12 @@ class ChatApp extends React.Component {
     const messageObject = { message: userTyping };
     this.socket.emit("client:typing", messageObject);
   }
-  userTyping(message, cb) {
+  userTyping(message) {
     // console.log("Typing...");
     // this.setState({ userTyping: message });
     this.setState({ anotherTyping: true }, function() {
       this.setState({ userTyping: message });
     });
-    cb();
   }
 
   removeRender() {
@@ -99,8 +99,10 @@ class ChatApp extends React.Component {
       <div className="container">
         <h3>{this.props.username} Chat</h3>
         <Messages messages={this.state.messages} />
+
         {this.state.anotherTyping ? (
-          <p>{this.state.userTyping} is typing...</p>
+          // <p>{this.state.userTyping} is typing...</p>
+            <TypingIndicator />
         ) : (
           ""
         )}
