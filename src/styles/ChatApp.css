@@ -65,3 +65,20 @@ h3 {
   color: #999;
   margin-bottom: 5px;
 }
+
+.success {
+  animation: hide-animation 0.6s ease-in 0s;
+  visibility: hidden;
+
+  @keyframes hide-animation {
+    0% {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    100% {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}

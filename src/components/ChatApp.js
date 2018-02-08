@@ -15,13 +15,15 @@ import moment from "moment";
 class ChatApp extends React.Component {
   constructor(props) {
     super(props);
+    const self = this;
     // set the initial state of messages so that it is not undefined on load
-    this.state = { messages: [], another_typing: null };
+    this.state = { messages: [], anotherTyping: null };
     // Connect to the server
     this.socket = io(config.api).connect();
 
     this.sendHandler = this.sendHandler.bind(this);
     this.keyHandler = this.keyHandler.bind(this);
+    this.removeRender = this.removeRender.bind(this);
 
     // Listen for messages from the server
     this.socket.on("server:message", message => {
@@ -30,8 +32,9 @@ class ChatApp extends React.Component {
 
     //Listen for typing from the server
     this.socket.on("server:typing", message => {
-      this.setState({ another_typing: true });
-      this.userTyping(message);
+      this.userTyping(message, function() {
+        console.log("In Callback");
+      });
     });
   }
 
@@ -39,6 +42,13 @@ class ChatApp extends React.Component {
     // get the messagelist container and set the scrollTop to the height of the container
     const objDiv = document.getElementById("messageList");
     objDiv.scrollTop = objDiv.scrollHeight;
+    if (this.state.anotherTyping) {
+      setTimeout(() => {
+        this.setState({
+          anotherTyping: false
+        });
+      }, 1000);
+    }
   }
   keyHandler() {
     //Denotes name of user that is typing
@@ -47,10 +57,17 @@ class ChatApp extends React.Component {
     const messageObject = { message: userTyping };
     this.socket.emit("client:typing", messageObject);
   }
-  userTyping(message) {
-    console.log(message + " is typing...");
-    let typing_indicator = `${message} is typing`;
-    return <p>{typing_indicator}</p>;
+  userTyping(message, cb) {
+    // console.log("Typing...");
+    // this.setState({ userTyping: message });
+    this.setState({ anotherTyping: true }, function() {
+      this.setState({ userTyping: message });
+    });
+    cb();
+  }
+
+  removeRender() {
+    setTimeout(this.setState({ userTyping: false }), 2000);
   }
   sendHandler(message, timeStamp) {
     // Grab the time
@@ -82,7 +99,11 @@ class ChatApp extends React.Component {
       <div className="container">
         <h3>{this.props.username} Chat</h3>
         <Messages messages={this.state.messages} />
-
+        {this.state.anotherTyping ? (
+          <p>{this.state.userTyping} is typing...</p>
+        ) : (
+          ""
+        )}
         <ChatInput onSend={this.sendHandler} onKeyUp={this.keyHandler} />
       </div>
     );
