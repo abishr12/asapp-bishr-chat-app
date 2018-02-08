@@ -11,7 +11,7 @@ class Message extends React.Component {
     // Display the message text and sender's name
 
     //Log the props
-    console.log(this.props);
+    //console.log(this.props);
     // Was the message sent by the current user. If so, add a css class
     const fromMe = this.props.fromMe ? "from-me" : "";
     return (

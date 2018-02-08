@@ -15,7 +15,8 @@ class ChatInput extends React.Component {
   }
 
   keyUpHandler(event) {
-    console.log("Typing...");
+    console.log("Client is typing...");
+    this.props.onKeyUp("Typing...");
   }
 
   textChangeHandler(event) {

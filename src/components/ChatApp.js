@@ -20,6 +20,7 @@ class ChatApp extends React.Component {
     // Connect to the server
     this.socket = io(config.api).connect();
     this.sendHandler = this.sendHandler.bind(this);
+    this.keyHandler = this.keyHandler.bind(this);
 
     // Listen for messages from the server
     this.socket.on("server:message", message => {
@@ -27,10 +28,8 @@ class ChatApp extends React.Component {
     });
 
     //Listen for typing from the server
-    this.socket.on("server:typing", bool => {
-      if (true) {
-        this.isTyping();
-      }
+    this.socket.on("server:typing", message => {
+      console.log("Server is receiving " + message);
     });
   }
 
@@ -39,10 +38,9 @@ class ChatApp extends React.Component {
     const objDiv = document.getElementById("messageList");
     objDiv.scrollTop = objDiv.scrollHeight;
   }
-  keyHandler(bool) {
-    if (true) {
-      this.socket.emit("client:typing", true);
-    }
+  keyHandler(message) {
+    console.log(this);
+    this.socket.emit("client:typing", message);
   }
   sendHandler(message, timeStamp) {
     // Grab the time
@@ -53,7 +51,7 @@ class ChatApp extends React.Component {
       message,
       timeStamp
     };
-    // console.log(messageObject);
+    //console.log(this.socket);
     // Emit the message to the server
     this.socket.emit("client:message", messageObject);
 
