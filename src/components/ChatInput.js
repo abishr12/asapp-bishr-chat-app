@@ -11,7 +11,13 @@ class ChatInput extends React.Component {
     // React ES6 does not bind 'this' to event handlers by default
     this.submitHandler = this.submitHandler.bind(this);
     this.textChangeHandler = this.textChangeHandler.bind(this);
+    this.keyUpHandler = this.keyUpHandler.bind(this);
   }
+
+  keyUpHandler(event) {
+    console.log("Typing...");
+  }
+
   textChangeHandler(event) {
     this.setState({ chatInput: event.target.value });
   }
@@ -21,7 +27,7 @@ class ChatInput extends React.Component {
     let now = moment();
     let timeNow = now._d.toString();
     const getTime = dateTime => {
-      return moment(dateTime).format("hh:mm a");
+      return moment(dateTime).format("h:mm a");
     };
 
     let timeStamp = getTime(timeNow);
@@ -37,6 +43,7 @@ class ChatInput extends React.Component {
         <input
           type="text"
           onChange={this.textChangeHandler}
+          onKeyUp={this.keyUpHandler}
           value={this.state.chatInput}
           placeholder="Write a message..."
           required

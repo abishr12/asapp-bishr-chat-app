@@ -16,7 +16,7 @@ class ChatApp extends React.Component {
   constructor(props) {
     super(props);
     // set the initial state of messages so that it is not undefined on load
-    this.state = { messages: [] };
+    this.state = { messages: [], typing: false };
     // Connect to the server
     this.socket = io(config.api).connect();
     this.sendHandler = this.sendHandler.bind(this);
@@ -25,12 +25,24 @@ class ChatApp extends React.Component {
     this.socket.on("server:message", message => {
       this.addMessage(message);
     });
+
+    //Listen for typing from the server
+    this.socket.on("server:typing", bool => {
+      if (true) {
+        this.isTyping();
+      }
+    });
   }
 
   componentDidUpdate() {
     // get the messagelist container and set the scrollTop to the height of the container
     const objDiv = document.getElementById("messageList");
     objDiv.scrollTop = objDiv.scrollHeight;
+  }
+  keyHandler(bool) {
+    if (true) {
+      this.socket.emit("client:typing", true);
+    }
   }
   sendHandler(message, timeStamp) {
     // Grab the time
@@ -49,6 +61,11 @@ class ChatApp extends React.Component {
 
     this.addMessage(messageObject);
   }
+
+  isTyping() {
+    //Message to display typing
+    console.log("Another User Is Typing");
+  }
   addMessage(message) {
     // Append the message to the component state
     const messages = this.state.messages;
@@ -60,7 +77,7 @@ class ChatApp extends React.Component {
       <div className="container">
         <h3>Asapp Chat App</h3>
         <Messages messages={this.state.messages} />
-        <ChatInput onSend={this.sendHandler} />
+        <ChatInput onSend={this.sendHandler} onKeyUp={this.keyHandler} />
       </div>
     );
   }
