@@ -22,10 +22,11 @@ class App extends React.Component {
   }
   render() {
     if (this.state.submitted) {
-      // Form was submitted, now show the main App
+      // Form was submitted, now show the Chat App
       return <ChatApp username={this.state.username} />;
     }
     return (
+      // Username Form
       <form
         onSubmit={this.usernameSubmitHandler}
         className="username-container"

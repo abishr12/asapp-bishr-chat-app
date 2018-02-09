@@ -1,5 +1,4 @@
 import React from "react";
-import moment from "moment";
 import Message from "./Message";
 
 // This is the main display of the application. It shows a list of all the

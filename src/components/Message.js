@@ -4,6 +4,7 @@ import React from "react";
 // We should have logic to display it on the right if the user sent the
 // message, or on the left if it was received from someone else.
 class Message extends React.Component {
+  //Rendering the time stamp as html
   renderTimeStamp() {
     return <div className="time-stamp">{this.props.timeStamp}</div>;
   }
@@ -12,6 +13,7 @@ class Message extends React.Component {
 
     //Log the props
     //console.log(this.props);
+
     // Was the message sent by the current user. If so, add a css class
     const fromMe = this.props.fromMe ? "from-me" : "";
     return (
@@ -20,6 +22,7 @@ class Message extends React.Component {
         <div className="message-body">{this.props.message}</div>
         <br />
         {}
+        {/* Produce Time Stamps from Incoming Users */}
         {!this.props.fromMe ? this.renderTimeStamp() : ""}
       </div>
     );

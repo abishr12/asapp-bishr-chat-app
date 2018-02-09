@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 
 // This component is where the user can type their message and send it
-// to the chat room. We shouldn't communicate with the server here though.
+// to the chat room. It shouldn't communicate with the server here though.
 class ChatInput extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +25,8 @@ class ChatInput extends React.Component {
   submitHandler(event) {
     // Stop the form from refreshing the page on submit
     event.preventDefault();
+
+    //Produce time stamp for every message sent
     let now = moment();
     let timeNow = now._d.toString();
     const getTime = dateTime => {
@@ -32,7 +34,7 @@ class ChatInput extends React.Component {
     };
 
     let timeStamp = getTime(timeNow);
-    // Call the onSend callback with the chatInput message
+    // Call the onSend callback with the chatInput message and time stamp
     this.props.onSend(this.state.chatInput, timeStamp);
     // Clear the input box
     this.setState({ chatInput: "" });

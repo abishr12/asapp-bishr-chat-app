@@ -3,11 +3,9 @@ require("../styles/ChatApp.css");
 import React from "react";
 import io from "socket.io-client";
 import config from "../config";
-import { Grid, Row, Col } from "react-bootstrap";
 import Messages from "./Messages";
 import ChatInput from "./ChatInput";
 import TypingIndicator from "./TypingIndicator";
-import moment from "moment";
 
 // This is where the main logic of the app will be. Here is where we will
 // communicate with the chat server (send and receive messages). We will
@@ -16,8 +14,10 @@ import moment from "moment";
 class ChatApp extends React.Component {
   constructor(props) {
     super(props);
-    const self = this;
+
     // set the initial state of messages so that it is not undefined on load
+    // set initial state of anotherTyping (another user that is typing) as null
+    // to prevent the typing icon from rendering
     this.state = { messages: [], anotherTyping: null };
     // Connect to the server
     this.socket = io(config.api).connect();
@@ -31,7 +31,7 @@ class ChatApp extends React.Component {
       this.addMessage(message);
     });
 
-    //Listen for typing from the server
+    //Listen for typing from the server (other users)
     this.socket.on("server:typing", message => {
       this.userTyping(message);
     });
@@ -42,7 +42,7 @@ class ChatApp extends React.Component {
     const objDiv = document.getElementById("messageList");
     objDiv.scrollTop = objDiv.scrollHeight;
 
-    //Reset rendering to disappear when the user completes typing
+    //Reset typingIndicator to disappear when the user completes typing
     if (this.state.anotherTyping) {
       setTimeout(() => {
         this.setState({
@@ -51,13 +51,17 @@ class ChatApp extends React.Component {
       }, 2000);
     }
   }
+
+  //Uses keystrokes to send message to API that the user is typing
   keyHandler() {
-    //Denotes name of user that is typing
+    //Denotes name of user that is typing when the input is in use
     let userTyping = `${this.props.username}`;
     console.log(userTyping);
     const messageObject = { message: userTyping };
     this.socket.emit("client:typing", messageObject);
   }
+
+  //Find out which user is typing (taking in information from the server)
   userTyping(message) {
     // console.log("Typing...");
     // this.setState({ userTyping: message });
@@ -70,15 +74,12 @@ class ChatApp extends React.Component {
     setTimeout(this.setState({ userTyping: false }), 2000);
   }
   sendHandler(message, timeStamp) {
-    // Grab the time
-    // console.log(message);
-    // console.log(timeStamp);
     const messageObject = {
       username: this.props.username,
       message,
       timeStamp
     };
-    // console.log(this);
+
     // Emit the message to the server
     this.socket.emit("client:message", messageObject);
 
@@ -101,8 +102,10 @@ class ChatApp extends React.Component {
         <Messages messages={this.state.messages} />
 
         {this.state.anotherTyping ? (
+          // Original version would have  "Adham is typing"
+          // But I really like how Apple produces an icon
           // <p>{this.state.userTyping} is typing...</p>
-            <TypingIndicator />
+          <TypingIndicator />
         ) : (
           ""
         )}
