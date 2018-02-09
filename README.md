@@ -49,7 +49,7 @@ NOTE: I know the requirement had the chat on one tab. However, I felt for testin
 
 While typing you'll see the typing indicator (based off of Apple's iMessage) indicating that the other user is typing along with timestamps for incoming messages
 
-![chat-display](https://media.giphy.com/media/xUOwGoYWWkpzNPdJ1C/giphy.gif)
+![chat-display](https://media.giphy.com/media/l4pTdhjYMM80uJehO/giphy.gif)
 
 ## Enjoy Your Chat
 
