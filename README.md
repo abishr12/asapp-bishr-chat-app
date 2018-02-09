@@ -51,7 +51,7 @@ Chat Display [chat-display](http://www.giphy.com/gifs/xUOwG2Unhur4GdAzPG)
 
 ## Enjoy Your Chat
 
-Enjoy! [enjoy-your-chat](https://giphy.com/gifs/hello-phone-yes-this-is-dog-pSpmpxFxFwDpC)
+Enjoy! [enjoy-your-chat](https://media.giphy.com/media/pSpmpxFxFwDpC/giphy.gif)
 
 <!-- ## Tutorial
 
