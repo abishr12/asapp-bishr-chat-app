@@ -5,7 +5,9 @@
 [Purpose](#purpose)<br />
 [Requirements](#requirements)<br />
 [Running The Chat App](#running-the-app)<br />
-[Using The Chat App](#running-the-app)<br />
+[Using The Chat App](#using-the-chat-app)<br />
+[Future Backend Integration](#backend-integration)<br />
+[Final Thoughts](#final-thoughts)<br />
 
 ## Purpose
 
@@ -53,14 +55,7 @@ While typing you'll see the typing indicator (based off of Apple's iMessage) ind
 
 ![enjoy-your-chat](https://media.giphy.com/media/pSpmpxFxFwDpC/giphy.gif)
 
-<!-- ## Tutorial
-
-Check out the tutorial on the CoderFactory blog here:
-[You Can Build an FB Messenger Style Chat App with ReactJs - Here's How!](https://www.coderfactoryacademy.edu.au/posts/how-you-can-build-facebook-messenger-chat-app-with-reactjs)
-
-![Finished react chat app](https://s17.postimg.org/40klqu39r/20160918_123011_capture.gif) -->
-
-## Thoughts For The Backend
+## Future Backend Integration
 
 With this kind of application, I do believe MySQL would be the best way to go with two tables (one for users, the other for messages).
 
