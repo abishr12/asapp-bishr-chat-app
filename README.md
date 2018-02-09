@@ -41,13 +41,13 @@ Open the app on two separate browsers
 
 NOTE: I know the requirement had the chat on one tab. However, I felt for testing purposes (and when it would go into production) that the chat would be better served simulating two separate users at two separate locations
 
-Put in your username ![username-input](https://media.giphy.com/media/xUOwGoYWWkpzNPdJ1C/giphy.gif)
+![username-input](https://media.giphy.com/media/xUOwGoYWWkpzNPdJ1C/giphy.gif)
 
 ### Typing Indication
 
 While typing you'll see the typing indicator (based off of Apple's iMessage) indicating that the other user is typing along with timestamps for incoming messages
 
-![chat-display](https://media.giphy.com/media/xUOwG2Unhur4GdAzPG/giphy.gif)
+![chat-display](https://media.giphy.com/media/xUOwGoYWWkpzNPdJ1C/giphy.gif)
 
 ## Enjoy Your Chat
 
@@ -59,3 +59,21 @@ Check out the tutorial on the CoderFactory blog here:
 [You Can Build an FB Messenger Style Chat App with ReactJs - Here's How!](https://www.coderfactoryacademy.edu.au/posts/how-you-can-build-facebook-messenger-chat-app-with-reactjs)
 
 ![Finished react chat app](https://s17.postimg.org/40klqu39r/20160918_123011_capture.gif) -->
+
+## Thoughts For The Backend
+
+With this kind of application, I do believe MySQL would be the best way to go with two tables (one for users, the other for messages).
+
+Each user would be assigned an id and every message sent would record the id of the sender (and in the future who it was sent to).
+
+The app runs off of using an array to display the messages while differentiating who it is from.
+
+An API would make a GET request with both the user (derived from a login screen) and the chat history of whomever they'd like to talk to, apply it to the empty messages array, and render it onto the screen.
+
+Happy to discuss this further!
+
+## Final Thoughts
+
+Once again thank you for your time. I really enjoyed working on this and hope you were similarly impressed with the app as I am. Looking forward to the next steps.
+
+![cool](https://media.giphy.com/media/XreQmk7ETCak0/giphy.gif)

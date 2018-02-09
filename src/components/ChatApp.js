@@ -83,6 +83,7 @@ class ChatApp extends React.Component {
     // Emit the message to the server
     this.socket.emit("client:message", messageObject);
 
+    //Verify that message is from the user
     messageObject.fromMe = true;
 
     this.addMessage(messageObject);
