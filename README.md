@@ -45,13 +45,13 @@ Put in your username [username-input](http://www.giphy.com/gifs/xUOwGoYWWkpzNPdJ
 
 ### Typing Indication
 
-While typing you'll see the typing indicator (based off of Apple's iMessage) indicating that the other user is typing along with timestamps for incoming message
+While typing you'll see the typing indicator (based off of Apple's iMessage) indicating that the other user is typing along with timestamps for incoming messages
 
 Chat Display [chat-display](https://media.giphy.com/media/xUOwG2Unhur4GdAzPG/giphy.gif)
 
 ## Enjoy Your Chat
 
-Enjoy! [enjoy-your-chat](https://media.giphy.com/media/pSpmpxFxFwDpC/giphy.gif)
+Enjoy! ![enjoy-your-chat](https://media.giphy.com/media/pSpmpxFxFwDpC/giphy.gif)
 
 <!-- ## Tutorial
 
