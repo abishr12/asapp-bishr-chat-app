@@ -15,7 +15,7 @@ Built from the react-instant-chat app with modifications for the purposes of the
 
 This was incredibly fun and I would like to thank you for giving me the opportunity to apply at ASAPP.
 
-![Thank You !!!](https://giphy.com/gifs/kiss-brad-pitt-thank-you-yoJC2El7xJkYCadlWE)
+![Thank You !!!](https://media.giphy.com/media/yoJC2El7xJkYCadlWE/giphy.gif)
 
 ## Requirements
 
