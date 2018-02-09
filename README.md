@@ -41,17 +41,17 @@ Open the app on two separate browsers
 
 NOTE: I know the requirement had the chat on one tab. However, I felt for testing purposes (and when it would go into production) that the chat would be better served simulating two separate users at two separate locations
 
-Put in your username [username-input](http://www.giphy.com/gifs/xUOwGoYWWkpzNPdJ1C)
+Put in your username ![username-input](https://media.giphy.com/media/xUOwGoYWWkpzNPdJ1C/giphy.gif)
 
 ### Typing Indication
 
 While typing you'll see the typing indicator (based off of Apple's iMessage) indicating that the other user is typing along with timestamps for incoming messages
 
-Chat Display [chat-display](https://media.giphy.com/media/xUOwG2Unhur4GdAzPG/giphy.gif)
+![chat-display](https://media.giphy.com/media/xUOwG2Unhur4GdAzPG/giphy.gif)
 
 ## Enjoy Your Chat
 
-Enjoy! ![enjoy-your-chat](https://media.giphy.com/media/pSpmpxFxFwDpC/giphy.gif)
+![enjoy-your-chat](https://media.giphy.com/media/pSpmpxFxFwDpC/giphy.gif)
 
 <!-- ## Tutorial
 
